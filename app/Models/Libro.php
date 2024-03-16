@@ -12,7 +12,13 @@ class Libro extends Model
         'genero',
         'fecha_publicacion',
         'calificacion',
+        'autores'
     ];
+
+    public static function isUniqueTitle($titulo)
+    {
+        return !Libro::where('titulo', $titulo)->exists();
+    }
 
     // Puedes agregar relaciones con otros modelos aquí
 

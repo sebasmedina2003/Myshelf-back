@@ -15,26 +15,21 @@ class LibroController extends Controller
 
     public function store(Request $request)
     {
-        // Validar los datos del formulario
-        // Redirigir a la página de éxito o mostrar un mensaje
-        return $request->titulo;
-
-        /* $request->validate([
-            'titulo' => 'required|max:255',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'genero' => 'required|in:novela,ensayo,poesia,ciencia_ficcion',
-            'fecha_publicacion' => 'required|date',
-            'calificacion' => 'required|numeric|min:0|max:5',
-        ]);
+        if (! Libro::isUniqueTitle($request->titulo)) {
+            return response()->json(['message' => 'Title is already in use'], 400);
+        }
 
         // Guardar el libro
         $libro = new Libro;
         $libro->titulo = $request->titulo;
-        $libro->imagen = $request->imagen->store('libros');
+        $libro->imagen = $request->imagen;
         $libro->genero = $request->genero;
-        $libro->fecha_publicacion = $request->fecha_publicacion;
+        $libro->autores = $request->autores;
+        $libro->fecha_publicacion = new \DateTime($request->fecha_publicacion);
         $libro->calificacion = $request->calificacion;
         $libro->save();
-        */
+
+        // Redirigir a la página de éxito o mostrar un mensaje
+        return response()->json(Libro::all());
     }
 }

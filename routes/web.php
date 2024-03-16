@@ -8,4 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/libros', [LibroController::class, "index"])->name("crud.get");
-Route::post('/libros', [LibroController::class, "create"])->name("crud.create");
+Route::post('/libros', [LibroController::class, "store"])->name("crud.create");

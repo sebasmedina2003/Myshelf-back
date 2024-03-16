@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('libros', function (Blueprint $table) {
@@ -13,13 +16,18 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('imagen');
             $table->string('genero');
+            $table->string('autores');
             $table->date('fecha_publicacion');
             $table->float('calificacion');
+            $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('libros');
+        //
     }
 };
