@@ -8,6 +8,7 @@
         "php": "^8.2",
         "ext-pgsql": "*",
         "doctrine/dbal": "^4.0",
+        "illuminate/support": "*",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9"
     },
